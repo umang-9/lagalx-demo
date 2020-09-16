@@ -12,6 +12,27 @@ ul {
 }
 
 /* hero caption css start */
+.videoWrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.video {
+  width: 100%;
+  height: 100%;
+  font-family: "object-fit:cover";
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.bannerCaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
 @media (min-width: 1280px) {
   html[lang="en"] .makeStyles-section-16 .MuiTypography-h2 {
       font-size: 3rem;

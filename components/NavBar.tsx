@@ -37,7 +37,7 @@ function NavBar(): ReactElement {
   const { t } = useTranslation();
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0
+    threshold: 100
   });
   
   

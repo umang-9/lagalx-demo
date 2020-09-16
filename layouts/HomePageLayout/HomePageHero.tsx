@@ -7,17 +7,17 @@ import FreeTrialButton from 'components/FreeTrialButton';
 const useStyles = makeStyles((theme) => ({
   section: {
     alignItems: 'center',
-    backgroundImage:
-      'linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(/images/hero.jpg)',
-    backgroundPosition: 'center center',
-    backgroundSize: 'cover',
+    // backgroundImage:
+    //   'linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(/images/hero.jpg)',
+    // backgroundPosition: 'center center',
+    // backgroundSize: 'cover',
     color: theme.palette.common.white,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    minHeight: '580px',
-    paddingBottom: theme.spacing(5),
-    paddingTop: theme.spacing(5),
+    minHeight: '100vh',
+    position: 'relative',
+    overflow: 'hidden',
   },
   title: {
     fontWeight: 'bold',
@@ -29,6 +29,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     borderColor: theme.palette.common.white,
   },
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+  videoWrap: {
+    width: '100%',
+    height: '100%',
+  },
 }));
 
 function HomePageHero(): ReactElement {
@@ -37,7 +45,13 @@ function HomePageHero(): ReactElement {
 
   return (
     <section className={classes.section}>
-      <Grid container justify="center">
+      <Grid className="videoWrap">
+        <video autoPlay loop muted className="video" >
+            <source src='/banner-video.mp4' type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+      </Grid>
+      <Grid container justify="center" className="bannerCaption">
         <Grid item xs={11} md={9}>
           <Typography
             align="center"
