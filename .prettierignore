@@ -1,0 +1,6 @@
+build
+coverage
+node_modules
+jest-coverage
+dev-server
+public

@@ -1,0 +1,78 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body a {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+/* hero caption css start */
+@media (min-width: 1280px) {
+  html[lang="en"] .makeStyles-section-16 .MuiTypography-h2 {
+      font-size: 3rem;
+  }
+  html[lang="en"] .makeStyles-section-16 .MuiTypography-h5 {
+    font-size: 1.40rem;
+  }
+}
+/* hero caption css end */
+
+/* header css start */
+header.MuiAppBar-positionSticky {
+  top: 15px;
+  left: auto;
+  right: 0;
+  position: fixed;
+  box-shadow: none;
+}
+body header a {
+  color: #fff;
+}
+header svg polygon, 
+header svg path {
+  fill: #fff;
+}
+header div[role="tooltip"] svg polygon, 
+header div[role="tooltip"] svg path {
+  fill: #242E51;
+}
+.MuiBox-root.MuiBox-root-374 {
+  color: #242E51;
+}
+header button.MuiButton-root {
+  margin-right: 10px;
+}
+
+header.MuiAppBar-positionSticky.MuiPaper-elevation24 {
+  background-color: #fff;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+header.MuiAppBar-positionSticky.MuiPaper-elevation24 svg polygon, 
+header.MuiAppBar-positionSticky.MuiPaper-elevation24 svg path {
+  fill: #242E51;
+}
+body header.MuiAppBar-positionSticky.MuiPaper-elevation24 a {
+  color: #242E51;
+}
+header.MuiAppBar-positionSticky.MuiPaper-elevation24 button.MuiButton-root {
+  border-color: #242E51;
+  color: #242E51;
+}
+/* header css end */
+
+img {
+  max-width: 100%;
+}
+
+@media (max-width: 959px) {
+  header button.MuiButton-root {
+    margin-right: 0;
+  }
+}

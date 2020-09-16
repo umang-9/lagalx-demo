@@ -1,0 +1,150 @@
+version: 2.1
+
+jobs:
+  unit_test:
+    docker:
+      - image: circleci/node:12.13.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn --frozen-lockfile
+      - run:
+          name: Test with Jest
+          command: yarn test:coverage  --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: 'reports/junit/js-test-results.xml'
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - store_artifacts:
+          path: jest-coverage
+      - store_test_results:
+          path: reports/junit
+
+  types_test:
+    docker:
+      - image: circleci/node:12.13.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn --frozen-lockfile
+      - run:
+          name: Test Typescript
+          command: yarn tsc
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+
+  prettier:
+    docker:
+      - image: circleci/node:12.13.0-stretch
+    steps:
+      - checkout
+      - run:
+          name: Install Prettier
+          command: yarn global add prettier@2.0.2 --dev --exact
+      - run:
+          name: Test Prettier
+          command: yarn run prettiercheck
+
+  staging_build_image_and_push:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: >-
+            docker build
+            --build-arg api_host=https://crm-service.staging.legalx.ai
+            --build-arg build_env=staging
+            --build-arg website_url=https://staging.yunban.co
+            --build-arg ga_tracking_id=UA-167105721-1
+            -t yb-website:staging .
+      - run:
+          name: Login to ACR
+          command: echo $DOCKER_PASS | docker login $REGISTRY_NAME -u $DOCKER_USER --password-stdin
+      - run:
+          name: Tag Docker image
+          command: docker image tag yb-website:staging $REGISTRY_NAME/yb-website:staging
+      - run:
+          name: Push Docker image to ACR
+          command: docker push $REGISTRY_NAME/yb-website:staging
+
+  production_build_image_and_push:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: >-
+            docker build
+            --build-arg api_host=https://crm-service.legalx.ai
+            --build-arg build_env=production
+            --build-arg website_url=https://yunban.co
+            --build-arg ga_tracking_id=UA-167105721-2
+            -t yb-website:$CIRCLE_TAG .
+      - run:
+          name: Login to ACR
+          command: echo $DOCKER_PASS | docker login $REGISTRY_NAME -u $DOCKER_USER --password-stdin
+      - run:
+          name: Tag Docker image with release tag
+          command: docker image tag yb-website:$CIRCLE_TAG $REGISTRY_NAME/yb-website:$CIRCLE_TAG
+      - run:
+          name: Tag Docker image with production tag
+          command: docker image tag $REGISTRY_NAME/yb-website:$CIRCLE_TAG $REGISTRY_NAME/yb-website:production
+      - run:
+          name: Push Docker image with release tag to ACR
+          command: docker push $REGISTRY_NAME/yb-website:$CIRCLE_TAG
+      - run:
+          name: Push Docker image with production tag to ACR
+          command: docker push $REGISTRY_NAME/yb-website:production
+
+workflows:
+  checks:
+    jobs:
+      - types_test:
+          filters:
+            branches:
+              ignore:
+                - master
+            tags:
+              ignore: /^release-.*/
+      - prettier:
+          filters:
+            branches:
+              ignore:
+                - master
+                - /^dependabot.*/
+            tags:
+              ignore: /^release-.*/
+
+  build_deploy_staging:
+    jobs:
+      - staging_build_image_and_push:
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /^release-.*/
+
+  build_deploy_production:
+    jobs:
+      - production_build_image_and_push:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^release-.*/

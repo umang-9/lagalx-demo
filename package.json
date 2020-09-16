@@ -1,0 +1,71 @@
+{
+  "name": "yb-website",
+  "version": "1.0.0",
+  "description": "Next.js Website for yunban.co powered by [Prismic](https://prismic.io).",
+  "main": "index.js",
+  "scripts": {
+    "dev": "babel ./server -d ./dev-server && node ./dev-server/index.js",
+    "generate:sitemap": "babel-node --extensions \".js,.ts\" ./generateSiteMap.ts",
+    "generate:robots": "babel-node --extensions \".js,.ts\" ./generateRobots.ts",
+    "build": "yarn generate:sitemap && yarn generate:robots && next build && babel ./server -d ./build-server",
+    "start": "NODE_ENV=production node ./build-server/index.js",
+    "export": "yarn generate:sitemap && yarn generate:robots && next export",
+    "prettiercheck": "prettier --check \"**/*.{js,ts,tsx,jsx}\" \"**/*.json\" \"**/*.md\" \"**/*.yml\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idisclosure-legalx/yb-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idisclosure-legalx/yb-website/issues"
+  },
+  "homepage": "https://github.com/idisclosure-legalx/yb-website#readme",
+  "dependencies": {
+    "@babel/preset-typescript": "^7.10.1",
+    "@material-ui/core": "^4.10.0",
+    "@material-ui/icons": "^4.9.1",
+    "@next/bundle-analyzer": "^9.4.4",
+    "classnames": "^2.2.6",
+    "core-js": "2.6.11",
+    "date-fns": "^2.14.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.1",
+    "next": "^9.4.4",
+    "next-compose-plugins": "^2.2.0",
+    "next-translate": "^0.17.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sitemap": "^6.0.0",
+    "superagent": "^5.2.2",
+    "xml-formatter": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/node": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.23",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.22.0",
+    "babel-eslint": "^10.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-import-resolver-webpack": "^0.12.2",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-chai-friendly": "^0.5.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
+  }
+}

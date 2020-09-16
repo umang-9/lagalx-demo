@@ -1,0 +1,10 @@
+coverage
+**/__mocks__
+**/__tests__
+.env
+node_modules
+jest-coverage
+cypress-coverage
+.nyc_output
+cypress
+dev-server/

@@ -1,0 +1,117 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["babel", "chai-friendly"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "globals": {
+    "NEXT_PUBLIC_API_HOST": "readonly",
+    "NEXT_PUBLIC_WEBSITE_URL": "readonly",
+    "NEXT_PUBLIC_GA_TRACKING_ID": "readonly"
+  },
+  "rules": {
+    "babel/semi": 1,
+    "comma-dangle": ["error", "only-multiline"],
+    "camelcase": 0,
+    "import/first": 0,
+    "import/no-cycle": 0,
+    "import/order": [
+      1,
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "never"
+      }
+    ],
+    "import/no-named-default": 0,
+    "import/no-named-as-default": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
+    "no-param-reassign": 0,
+    "react/forbid-prop-types": 0,
+    "react/require-default-props": 0,
+    "react/destructuring-assignment": [0],
+    "react/jsx-uses-react": 1,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-wrap-multilines": [
+      1,
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line",
+        "prop": "parens-new-line"
+      }
+    ],
+    "react/jsx-curly-newline": 0,
+    "react/state-in-constructor": 0,
+    "import/extensions": [
+      1,
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": { "extensions": [".js", ".jsx", ".ts", "tsx"] },
+      "webpack": { "config": "webpack.config.js" }
+    }
+  },
+  "overrides": [
+    {
+      "parser": "@typescript-eslint/parser",
+      "files": ["**/*.ts", "**/*.tsx"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "eslint:recommended",
+        "plugin:react/recommended"
+      ],
+      "parserOptions": {
+        "ecmaFeatures": { "jsx": true },
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
+      "plugins": ["react", "@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/camelcase": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/ban-ts-ignore": 0,
+        "react/prop-types": "off",
+        "react/jsx-filename-extension": [
+          2,
+          { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+        ]
+      }
+    }
+  ]
+}

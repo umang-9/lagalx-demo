@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /faq
+Disallow: /zh-hant/faq
+Disallow: /zh-hans/faq

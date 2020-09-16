@@ -1,0 +1,16 @@
+.idea/
+node_modules/
+.next/
+build/
+bundles
+.DS_Store
+junit.xml
+coverage/
+jest-coverage/
+dev-server/
+yarn-error.log
+out/
+build-server/
+public/sitemap.xml
+public/robots.txt
+.env
