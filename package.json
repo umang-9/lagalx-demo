@@ -2,6 +2,10 @@
   "name": "yb-website",
   "version": "1.0.0",
   "description": "Next.js Website for yunban.co powered by [Prismic](https://prismic.io).",
+  "engines": {
+    "node": "10.16.0", 
+    "npm": "6.9.0"
+  },
   "main": "index.js",
   "scripts": {
     "dev": "babel ./server -d ./dev-server && node ./dev-server/index.js",
