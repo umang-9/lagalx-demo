@@ -14,7 +14,8 @@
     "build": "yarn generate:sitemap && yarn generate:robots && next build && babel ./server -d ./build-server",
     "start": "NODE_ENV=production node ./build-server/index.js",
     "export": "yarn generate:sitemap && yarn generate:robots && next export",
-    "prettiercheck": "prettier --check \"**/*.{js,ts,tsx,jsx}\" \"**/*.json\" \"**/*.md\" \"**/*.yml\""
+    "prettiercheck": "prettier --check \"**/*.{js,ts,tsx,jsx}\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
