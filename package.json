@@ -40,7 +40,8 @@
     "react-dom": "^16.13.1",
     "sitemap": "^6.0.0",
     "superagent": "^5.2.2",
-    "xml-formatter": "^2.1.0"
+    "xml-formatter": "^2.1.0",
+    "yarn": "^1.22.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.3",
