@@ -40,7 +40,7 @@ function LanguageSelectorMenuButton(
         startIcon={props.showStartIcon && <Language />}
         variant={props.variant}
       >
-        {lang === EnglishLocale && 'English'}
+        {lang === EnglishLocale && 'EN'}
         {lang === SimplifiedChineseLocale && '简体中文'}
         {lang === TraditionalChineseLocale && '繁體中文'}
       </Button>
@@ -51,7 +51,7 @@ function LanguageSelectorMenuButton(
       >
         {lang !== EnglishLocale && (
           <MenuItemLink lang={EnglishLocale} href={router.pathname}>
-            English
+            EN
           </MenuItemLink>
         )}
         {lang !== SimplifiedChineseLocale && (

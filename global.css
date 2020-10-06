@@ -118,6 +118,10 @@ header.MuiAppBar-positionSticky.MuiPaper-elevation24 button.MuiButton-root {
   border-color: #242E51;
   color: #242E51;
 }
+span.menuSeparator {
+  margin-right: 25px;
+  margin-left: 9px;
+}
 /* header css end */
 
 img {

@@ -72,7 +72,7 @@ function NavBar(): ReactElement {
                 </Hidden>
 
                 <Hidden smDown>
-                  <LanguageSelectorMenuButton variant="text" />
+                  
                   <Link href="/#product-features" passHref shallow>
                     <Typography className={classes.anchor} component="a">
                       {t('common:productOverview')}
@@ -88,11 +88,16 @@ function NavBar(): ReactElement {
                       {t('common:aboutYunban')}
                     </Typography>
                   </Link>
+                  <span className="menuSeparator"></span>
                   <Link href="/#contact" passHref shallow>
                     <Typography className={classes.anchor} component="a">
                       {t('common:contactUs')}
                     </Typography>
                   </Link>
+
+                  <LanguageSelectorMenuButton variant="text" />
+
+
                   <a
                     className={classes.anchor}
                     href="https://app.legalx.ai/login"
@@ -101,7 +106,9 @@ function NavBar(): ReactElement {
                   >
                     {t('common:login')}
                   </a>
+
                   <FreeTrialButton />
+
                 </Hidden>
 
               </Box>
